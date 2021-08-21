@@ -15,15 +15,15 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function FormPersonalDetails(){
+export default function FormUserDetails(){
     const classes = useStyles();
-    const {occupation,city,bio,handleChange}=useContext(Context)
+    const {firstName,lastName,email,handleChange}=useContext(Context)
     return(
         <div className={classes.root}>
             <FormGroup>
-                <TextField id="standard-basic" label="occupation" onChange={handleChange} value={occupation} name="occupation"/>
-                <TextField id="standard-basic" label="city" onChange={handleChange} value={city} name="city" />
-                <TextField id="standard-basic" label="bio" onChange={handleChange} value={bio} name="bio" />
+                <TextField id="standard-basic" label="FirstName" onChange={handleChange} value={firstName} name="firstName"/>
+                <TextField id="standard-basic" label="LastName" onChange={handleChange} value={lastName} name="lastName" />
+                <TextField id="standard-basic" label="email" onChange={handleChange} value={email} name="email" />
             </FormGroup>
         </div>
     )
