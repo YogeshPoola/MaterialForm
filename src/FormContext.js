@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from 'react-router-dom'
 
 const Context = React.createContext();
 
@@ -11,13 +12,31 @@ function ContextProvider(props){
     const [occupation,setOccupation]=useState("")
     const [city,setCity]=useState("")
     const [bio,setBio]=useState("")
+    const [step,setStep]=useState(0)
 
     // STATE ARRAY
-    const stateArray=[firstName,lastName,email,occupation,city,bio]
+    const stateArray=[firstName,lastName,email,occupation,city,bio,step]
 
+    // Page Index Object
+    const pageIndex={
+        [1] : 'formuserdetails',
+        [2] : 'formpersonaldetails'
+    }
     //METHODS
     // SETSTATE METHOD ARRAY
     const setStateArray=[setFirstName,setLastName,setEmail,setOccupation,setCity,setBio]
+    //Handle Step Changes
+    const nextStep=()=>{
+        console.log("nextStep")
+        setStep(step+1)
+    }
+    const prevStep=()=>{
+        console.log("prevStep")
+        setStep(step-1)
+   }
+   console.log(step)
+   const location = useLocation();
+   console.log(`path : ${location.pathname}`);
     //Handle Input Changes
     const handleChange=e=>{
         switch (e.target.name) {
@@ -48,7 +67,7 @@ function ContextProvider(props){
     }
 
   return (
-    <Context.Provider value={{ firstName,lastName,email,occupation,city,bio,handleChange }}>
+    <Context.Provider value={{ firstName,lastName,email,occupation,city,bio,step,pageIndex,nextStep,prevStep,handleChange }}>
       {props.children}
     </Context.Provider>
   );
